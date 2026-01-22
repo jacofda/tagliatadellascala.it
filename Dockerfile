@@ -48,6 +48,10 @@ RUN mkdir -p storage/framework/cache/data \
 # Install composer dependencies (cached if composer files unchanged)
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --no-ansi
 
+# Copy entrypoint script BEFORE copying application files
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Copy application files
 COPY . /var/www/html
 
@@ -58,11 +62,7 @@ COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 RUN composer dump-autoload --optimize --no-dev
 
 # Set correct permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/storage \
-    && chmod -R 775 /var/www/html/bootstrap/cache
-
-# Copy entrypoint script
+RUCopy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
