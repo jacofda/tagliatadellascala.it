@@ -35,6 +35,11 @@ jobs:
             mkdir -p storage/logs
             mkdir -p bootstrap/cache
 
+            # Fix permissions before starting containers
+            echo "🔐 Setting permissions..."
+            sudo chown -R www-data:www-data storage bootstrap/cache
+            sudo chmod -R 775 storage bootstrap/cache
+
             #3 Rebuild and restart Docker containers
             echo "🐳 Rebuilding and restarting containers..."
             docker compose up -d --build
