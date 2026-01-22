@@ -22,6 +22,11 @@ jobs:
             #1 Vai alla directory del progetto
             cd /var/www/tagliatadellascala.it
 
+            # Clean files owned by container before git operations
+            echo "🧹 Cleaning container-owned files..."
+            docker compose exec -T app sh -c "rm -rf /var/www/html/storage/framework/cache/data/* /var/www/html/storage/framework/sessions/* /var/www/html/storage/framework/views/*" 2>/dev/null || true
+            docker compose exec -T app sh -c "rm -f /var/www/html/storage/logs/*.log" 2>/dev/null || true
+
             #2 Pull latest code from main branch
             echo "📥 Pulling latest code..."
             git reset --hard
