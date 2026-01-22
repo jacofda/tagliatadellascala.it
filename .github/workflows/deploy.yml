@@ -26,6 +26,15 @@ jobs:
             echo "📥 Pulling latest code..."
             git pull origin main
 
+            #2.5 Ensure storage directories exist
+            echo "📁 Creating storage directories..."
+            mkdir -p storage/framework/cache/data
+            mkdir -p storage/framework/sessions
+            mkdir -p storage/framework/views
+            mkdir -p storage/app/public
+            mkdir -p storage/logs
+            mkdir -p bootstrap/cache
+
             #3 Rebuild and restart Docker containers
             echo "🐳 Rebuilding and restarting containers..."
             docker compose up -d --build

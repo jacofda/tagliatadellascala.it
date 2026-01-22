@@ -36,15 +36,17 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy composer files first for better layer caching
 COPY composer.json composer.lock /var/www/html/
 
-# Create Laravel storage directories before composer install
+# Create required directories before composer install
 RUN mkdir -p storage/framework/cache/data \
     && mkdir -p storage/framework/sessions \
     && mkdir -p storage/framework/views \
     && mkdir -p storage/logs \
-    && mkdir -p bootstrap/cache
+    && mkdir -p bootstrap/cache \
+    && mkdir -p database/seeds \
+    && mkdir -p database/factories
 
 # Install composer dependencies (cached if composer files unchanged)
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts --no-ansi
 
 # Copy application files
 COPY . /var/www/html
