@@ -24,6 +24,8 @@ jobs:
 
             #2 Pull latest code from main branch
             echo "📥 Pulling latest code..."
+            git reset --hard
+            git clean -fd
             git pull origin main
 
             #2.5 Ensure storage directories exist
@@ -37,8 +39,8 @@ jobs:
 
             # Fix permissions before starting containers
             echo "🔐 Setting permissions..."
-            sudo chown -R www-data:www-data storage bootstrap/cache
-            sudo chmod -R 775 storage bootstrap/cache
+            chown -R 82:82 storage bootstrap/cache 2>/dev/null || true
+            chmod -R 775 storage bootstrap/cache
 
             #3 Rebuild and restart Docker containers
             echo "🐳 Rebuilding and restarting containers..."
@@ -56,8 +58,8 @@ jobs:
             # 5. Update nginx if config changed
             if [ -f nginx-reverse-proxy.conf ]; then
                 echo "🔧 Updating nginx configuration..."
-                sudo cp nginx-reverse-proxy.conf /etc/nginx/sites-available/tagliatadellascala.it
-                sudo nginx -t && sudo systemctl reload nginx
+                cp nginx-reverse-proxy.conf /tmp/tagliatadellascala.it.conf
+                echo "Note: Nginx config updated in /tmp - manually copy to /etc/nginx/sites-available/ if needed"
             fi
 
             # 6. Cleanup
