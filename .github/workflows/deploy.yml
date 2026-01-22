@@ -28,14 +28,7 @@ jobs:
             docker compose exec -T app sh -c "rm -f /var/www/html/storage/logs/*.log" 2>/dev/null || true
 
             #2 Pull latest code from main branch
-
-            sudo chown -R $USER:$USER .
-            git reset --hard HEAD
-            git pull origin main
-
             echo "📥 Pulling latest code..."
-            git reset --hard
-            git clean -fd
             git pull origin main
 
             #2.5 Ensure storage directories exist
@@ -46,6 +39,12 @@ jobs:
             mkdir -p storage/app/public
             mkdir -p storage/logs
             mkdir -p bootstrap/cache
+
+            # Ensure database directory and file exist
+            mkdir -p database
+            if [ ! -f database/db.sqlite ]; then
+                touch database/db.sqlite
+            fi
 
             #3 Rebuild and restart Docker containers
             echo "🐳 Rebuilding and restarting containers..."

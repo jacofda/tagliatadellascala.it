@@ -21,7 +21,16 @@ chmod 775 /var/www/html/storage/framework/sessions
 chmod 775 /var/www/html/storage/framework/cache/data
 chmod 775 /var/www/html/storage/logs
 
-echo "✅ Permissions set for storage and bootstrap/cache directories."
+# Fix database permissions (critical for SQLite)
+if [ -d /var/www/html/database ]; then
+    chown -R www-data:www-data /var/www/html/database
+    chmod 775 /var/www/html/database
+    if [ -f /var/www/html/database/db.sqlite ]; then
+        chmod 664 /var/www/html/database/db.sqlite
+    fi
+fi
+
+echo "✅ Permissions set for storage, bootstrap/cache, and database directories."
 
 # Start PHP-FPM and Nginx
 php-fpm -D && nginx -g 'daemon off;'
