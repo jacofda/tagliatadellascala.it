@@ -48,9 +48,7 @@ return array(
 
                 'sqlite' => array(
                         'driver'   => 'sqlite',
-                        'database' => env('DB_DATABASE', __DIR__.'/../db.sqlite'),
-                        'prefix'   => '',
-                ),
+                'database' => env('DB_DATABASE', __DIR__.'/../database/db.sqlite'),
 
 
                 'mysql' => array(

@@ -12,7 +12,7 @@ services:
       # Environment file (managed manually on server)
       - ./.env:/var/www/html/.env
       # Persistent volume for SQLite database
-      - ./db.sqlite:/var/www/html/db.sqlite
+      - ./database/db.sqlite:/var/www/html/database/db.sqlite
       # Persistent volumes for Laravel storage
       - ./storage/app:/var/www/html/storage/app
       - ./storage/framework:/var/www/html/storage/framework
