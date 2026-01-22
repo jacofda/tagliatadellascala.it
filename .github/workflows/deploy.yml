@@ -48,7 +48,14 @@ jobs:
             docker compose exec -T app php artisan route:cache
             docker compose exec -T app php artisan view:cache
 
-            # 5. Cleanup
+            # 5. Update nginx if config changed
+            if [ -f nginx-reverse-proxy.conf ]; then
+                echo "🔧 Updating nginx configuration..."
+                sudo cp nginx-reverse-proxy.conf /etc/nginx/sites-available/tagliatadellascala.it
+                sudo nginx -t && sudo systemctl reload nginx
+            fi
+
+            # 6. Cleanup
             echo "🧹 Cleaning up..."
             docker image prune -f
 
