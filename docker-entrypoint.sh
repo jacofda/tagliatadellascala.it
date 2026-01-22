@@ -21,5 +21,7 @@ chmod 775 /var/www/html/storage/framework/sessions
 chmod 775 /var/www/html/storage/framework/cache/data
 chmod 775 /var/www/html/storage/logs
 
+echo "✅ Permissions set for storage and bootstrap/cache directories."
+
 # Start PHP-FPM and Nginx
 php-fpm -D && nginx -g 'daemon off;'
