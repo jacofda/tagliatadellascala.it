@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ${COMPOSE_PROJECT_NAME}_app
+    restart: unless-stopped
+    working_dir: /var/www/html
+    ports:
+      - "8000:80"
+    volumes:
+      # Environment file (managed manually on server)
+      - ./.env:/var/www/html/.env
+      # Persistent volume for SQLite database
+      - ./db.sqlite:/var/www/html/db.sqlite
+      # Persistent volumes for Laravel storage
+      - ./storage/app:/var/www/html/storage/app
+      - ./storage/framework:/var/www/html/storage/framework
+      - ./storage/logs:/var/www/html/storage/logs
+    networks:
+      - ${COMPOSE_PROJECT_NAME}-network
+
+networks:
+  tagliatadellascala-network:
+    driver: bridge

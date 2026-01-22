@@ -1,0 +1,71 @@
+.pagination{font-size:13px;font-family:Open Sans,arial,sans-serif}
+.pagination a{color:#999;text-decoration:none;}
+.pagination li {display:inline-block;min-width:30px;box-sizing:border-box;padding:7px 14px;border:1px solid #eaeaea;color:#999;font-size:13px;font-weight:400;text-transform:uppercase;text-align:center;text-decoration:none;-webkit-transition:all .27s ease-out;transition:all .27s ease-out}
+.pagination .fa{margin-top:1px;font-size:16px}.pagination a:hover{text-decoration:none;border-color:#bbb;color:#444}
+.pagination li.active,.pagination li.active:hover{border-color:#bbb;color:#444;cursor:default}
+.pagination li.disabled,.pagination li.disabled:hover{border-color:#efefef;color:#bbb;cursor:default}
+
+.main-nav i.fa{color:rgba(255,255,255,.7);}
+
+.small-section{padding-top:130px;}
+.fl{float: left;clear:none; width:40%; min-width: 200px;margin-top: 12px;padding-left: 12px;}
+.fl-small{float: left;clear:none; width:100px; margin-top: 12px;padding-left: 12px;}
+.right{text-align: right;}
+.center{text-align: center;}
+.firstTDbold tr td:first-child{font-weight: bolder;text-transform: uppercase;}
+.relative{position:relative;}
+.ab-left{position: absolute;left:0; bottom:-30px;}
+.ab-right{position: absolute;right:0; bottom:-30px;}
+.pr-10{padding-right:10px;}
+.strong{font-weight: bolder;}
+.alert{position:relative;}
+i.closeMe{position: absolute;right:5px; top:5px;}
+.myheading{line-height: 40px; margin-top: 40px;padding-top:50px;padding-bottom:50px; padding-right: 30px; font-size: 250%;border-right:8px solid #333;text-align:right;}
+.myheading span{font-weight: bolder;font-size: 300%;}
+.team-item-image img {width:100%; max-width: 200px; margin-left: auto; margin-right: auto; display: block; text-align: center; }
+.raccolta-immagine{background: url('../../img/slideshow/Le-Delizie-Di-Betty-Strudel.jpg') !important;} 
+.raccolta-testo-1{padding-bottom: 0px !important;}
+@media only screen and (max-width: 480px){
+  .fixed-height-small .fullscreenbanner{ margin-top:76px !important;  }
+}
+
+.f-left{text-align: left; margin-bottom: 10px;}
+.f-mb-20{margin-bottom: 10px;}
+section.bg-sottoli{color:#fff;background: #7EBD41;}
+section.bg-marmellate{color:#fff;background: #FCC41A;}
+section.bg-confetture{color:#fff;background: #EE7E1D;}
+section.bg-sali-aromatizzati{color:#fff;background: #B0D9C6;}
+section.bg-condimenti{color:#fff;background: #B0D9C6;}
+section.bg-preparati-per-dolci{color:#fff;background: #D3B694;}
+section.bg-idee-regalo{color:#fff;background: #C47AB1;}
+section.bg-categorie div.white{color:#fff !important;}
+section.bg-categorie div.white a{color:#fff !important;}  
+.pl-10{padding-left:10px ! important; font-weight: bold;}
+.black { color: #000;text-shadow: 1px 1px 1px #fff; letter-spacing: 8px; font-size: 100%; }
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.glyphicon {position: relative;top: 1px;display: inline-block;font-family: 'Glyphicons Halflings';font-style: normal;font-weight: normal;line-height: 1;-webkit-font-smoothing: antialiased;-moz-osx-font-smoothing: grayscale;}
+.glyphicon-trash:before {content: "\e020";}
+.glyphicon-upload:before {content: "\e027";}
+.glyphicon-folder-close:before {content: "\e117";}
+.glyphicon-folder-open:before {content: "\e118";}
+.glyphicon-file:before {content: "\e022";}
+.fix-padding{padding-top: 70px ! important;}
+.alert-danger{border-color: red;border-width: 1px;color: #fff;text-align: center;font-size: 13px;line-height: 13px;background: rgba(255, 0, 0, 0.7);}
+.noMarginTop{margin-top: 0px ! important;}
+
+@media(max-width: 768px){
+	div.hs-line-14{font-size: 16px ! important;line-height: 16px ! important;}
+	div.hs-line-14 h4{font-size: 16px ! important;line-height: 16px ! important;}
+	div.hs-line-14 span{font-size: 16px ! important;line-height: 16px ! important;}
+	div.hs-line-8{font-size: 15px ! important;line-height: 15px ! important;}
+	div.large_bold_white div a{font-size: 11px ! important; padding: 5px 8px ! important;line-height: 11px ! important;}
+	div.caption div a.btn-border-w, div.caption div a.btn-w{font-size: 11px ! important; padding: 5px 8px ! important; margin-top: 18px ! important;line-height: 11px ! important;}
+	.icona-slide{min-width:160px ! important; max-width: 100px; height: 100px;}
+}
+
+.icona-slide{width: 180px !important; height: 180px;}
+.border-bottom{border-bottom:1px solid #555;}

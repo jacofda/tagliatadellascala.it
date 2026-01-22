@@ -1,0 +1,48 @@
+# Dependencies
+/vendor
+/node_modules
+
+# Environment files
+.env
+.env.backup
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Laravel
+/storage/*.key
+/storage/logs/*.log
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# Build files
+/public/hot
+/public/mix-manifest.json
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Testing
+/tests
+phpunit.xml
+.phpunit.result.cache
+
+# Documentation
+README.md
+readme.md
+*.md
+
+# Docker
+docker-compose.override.yml
+.dockerignore

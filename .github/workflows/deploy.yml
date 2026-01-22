@@ -1,0 +1,29 @@
+name: Deploy to OVH
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Deploy to OVH Server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.OVH_HOST }}
+          username: ${{ secrets.OVH_USERNAME }}
+          key: ${{ secrets.OVH_SSH_KEY }}
+          script: |
+            cd /var/www/tagliatadellascala.it
+            echo "📥 Pulling latest code..."
+            git pull origin main
+            echo "🐳 Rebuilding and restarting containers..."
+            docker compose up -d --build
+            echo "⏳ Waiting for containers..."
+            sleep 10
+            docker compose exec -T app php artisan config:cache
+            docker compose exec -T app php artisan route:cache
+            docker compose exec -T app php artisan view:cache

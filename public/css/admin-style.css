@@ -1,0 +1,10 @@
+.relative{position:relative;}
+.right{float: right; text-align: right;}
+.left{float: left; text-align: left;}
+.red{color:red;}
+.green{color:green;}
+.old-price{color:red;font-size:90%;text-decoration: line-through;}
+
+.apix{position:absolute;top: -22px;left: 0;}
+img.thumb{max-width: 64px; max-height: 48px;}
+.marginLeft10{margin-left: 10px;}
