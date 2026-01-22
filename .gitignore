@@ -13,3 +13,9 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+
+.DS_Store
+storage/logs/*.log
+storage/framework/sessions/*
+storage/framework/views/*.php
+storage/framework/cache/data/*

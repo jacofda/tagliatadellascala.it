@@ -28,6 +28,11 @@ jobs:
             docker compose exec -T app sh -c "rm -f /var/www/html/storage/logs/*.log" 2>/dev/null || true
 
             #2 Pull latest code from main branch
+
+            sudo chown -R $USER:$USER .
+            git reset --hard HEAD
+            git pull origin main
+
             echo "📥 Pulling latest code..."
             git reset --hard
             git clean -fd
