@@ -62,7 +62,7 @@ COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 RUN composer dump-autoload --optimize --no-dev
 
 # Set correct permissions
-RUCopy entrypoint script
+#RUCopy entrypoint script
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
