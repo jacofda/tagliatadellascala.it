@@ -2,9 +2,9 @@
 /public/hot
 /storage/*.key
 /storage/framework/cache/data
-/storage/logs
-/storage/sessions
-/storage/views
+/storage/logs/*
+/storage/sessions/*
+/storage/views/*
 /vendor
 .env
 .env.backup
