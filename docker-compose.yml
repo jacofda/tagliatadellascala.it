@@ -1,11 +1,9 @@
-version: '3.8'
-
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: ${COMPOSE_PROJECT_NAME}_app
+    container_name: tagliatadellascala_app
     restart: unless-stopped
     working_dir: /var/www/html
     ports:
@@ -20,7 +18,7 @@ services:
       - ./storage/framework:/var/www/html/storage/framework
       - ./storage/logs:/var/www/html/storage/logs
     networks:
-      - ${COMPOSE_PROJECT_NAME}-network
+      - tagliatadellascala-network
 
 networks:
   tagliatadellascala-network:
