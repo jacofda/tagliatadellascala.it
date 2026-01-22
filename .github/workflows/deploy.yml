@@ -56,6 +56,8 @@ jobs:
 
             # 4. Laravel optimization
             echo "📦 Running Laravel commands..."
+            docker compose exec -T app rm -rf /var/www/html/public/storage
+            docker compose exec -T app php artisan storage:link
             docker compose exec -T app php artisan config:cache
             docker compose exec -T app php artisan route:cache
             docker compose exec -T app php artisan view:cache
