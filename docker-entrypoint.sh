@@ -17,9 +17,9 @@ chmod -R 775 /var/www/html/storage
 chmod -R 775 /var/www/html/bootstrap/cache
 
 # Specifically ensure session directory is writable
-chmod 777 /var/www/html/storage/framework/sessions
-chmod 777 /var/www/html/storage/framework/cache/data
-chmod 777 /var/www/html/storage/logs
+chmod 775 /var/www/html/storage/framework/sessions
+chmod 775 /var/www/html/storage/framework/cache/data
+chmod 775 /var/www/html/storage/logs
 
 # Start PHP-FPM and Nginx
 php-fpm -D && nginx -g 'daemon off;'
