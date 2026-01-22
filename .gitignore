@@ -1,6 +1,10 @@
 /node_modules
 /public/hot
 /storage/*.key
+/storage/framework/cache/data
+/storage/logs
+/storage/sessions
+/storage/views
 /vendor
 .env
 .env.backup
