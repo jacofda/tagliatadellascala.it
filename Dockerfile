@@ -55,6 +55,9 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 # Copy application files
 COPY . /var/www/html
 
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 # Copy nginx configuration
 COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 
