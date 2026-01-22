@@ -33,26 +33,32 @@ RUN apk add --no-cache \
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
+# Copy composer files first for better layer caching
+COPY composer.json composer.lock /var/www/html/
+
+# Create Laravel storage directories before composer install
+RUN mkdir -p storage/framework/cache/data \
+    && mkdir -p storage/framework/sessions \
+    && mkdir -p storage/framework/views \
+    && mkdir -p storage/logs \
+    && mkdir -p bootstrap/cache
+
+# Install composer dependencies (cached if composer files unchanged)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+
 # Copy application files
 COPY . /var/www/html
 
 # Copy nginx configuration
 COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 
-# Create Laravel storage directories if they don't exist
-RUN mkdir -p /var/www/html/storage/framework/cache/data \
-    && mkdir -p /var/www/html/storage/framework/sessions \
-    && mkdir -p /var/www/html/storage/framework/views \
-    && mkdir -p /var/www/html/storage/logs \
-    && mkdir -p /var/www/html/bootstrap/cache
+# Run post-install scripts now that all files are present
+RUN composer dump-autoload --optimize --no-dev
 
 # Set correct permissions
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage \
     && chmod -R 775 /var/www/html/bootstrap/cache
-
-# Install composer dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Expose port 80
 EXPOSE 80

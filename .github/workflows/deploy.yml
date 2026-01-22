@@ -31,25 +31,16 @@ jobs:
             docker compose up -d --build
 
             echo "⏳ Waiting for containers..."
-            sleep 10
+            sleep 5
 
-            # 4. Composer install
+            # 4. Laravel optimization
             echo "📦 Running Laravel commands..."
-            docker exec scala_app git config --global --add safe.directory /var/www
-            docker exec scala_app composer install --no-dev --optimize-autoloader --no-interaction
+            docker compose exec -T app php artisan config:cache
+            docker compose exec -T app php artisan route:cache
+            docker compose exec -T app php artisan view:cache
 
-            docker exec scala_app php artisan config:cache
-            docker exec scala_app php artisan route:cache
-            docker exec scala_app php artisan view:cache
-            docker exec scala_app php artisan storage:link
-
-            # 5. Permessi Storage
-            echo "🔐 Fixing permissions..."
-            docker exec scala_app chown -R www-data:www-data /var/www/storage
-            docker exec scala_app chmod -R 775 /var/www/storage
-
-            # 6. Cleanup
-            echo "🧹 Cleaning up old images..."
-            docker system prune -f
+            # 5. Cleanup
+            echo "🧹 Cleaning up..."
+            docker image prune -f
 
             echo "✅ Deployment completed successfully!"
