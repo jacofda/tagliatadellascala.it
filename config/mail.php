@@ -133,4 +133,20 @@ return [
 
     'log_channel' => env('MAIL_LOG_CHANNEL'),
 
+
+/*
+    |--------------------------------------------------------------------------
+    | SSL Stream Context Options
+    |--------------------------------------------------------------------------
+    | Qui disabilitiamo la verifica del nome del peer per risolvere il 
+    | conflitto tra serverlet.com e shellrent.com
+    */
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
+
 ];
