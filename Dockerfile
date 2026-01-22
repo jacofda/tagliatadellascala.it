@@ -62,8 +62,12 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage \
     && chmod -R 775 /var/www/html/bootstrap/cache
 
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Expose port 80
 EXPOSE 80
 
-# Start PHP-FPM and Nginx
-CMD php-fpm -D && nginx -g 'daemon off;'
+# Use entrypoint script to fix permissions at runtime
+ENTRYPOINT ["docker-entrypoint.sh"]
