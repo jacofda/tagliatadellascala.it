@@ -20,15 +20,16 @@ class SetCacheHeaders
 
         // Only cache successful GET requests
         if ($request->isMethod('GET') && $response->isSuccessful()) {
-            // Convert minutes to seconds
             $seconds = $ttl * 60;
             
-            // Remove any existing cache headers first
+            // FORZA rimozione header sessione
             $response->headers->remove('Cache-Control');
             $response->headers->remove('Pragma');
+            $response->headers->remove('Expires');
             
-            // Set public cache headers
-            $response->headers->set('Cache-Control', "public, max-age={$seconds}");
+            // FORZA header pubblici
+            $response->headers->set('Cache-Control', "public, max-age={$seconds}, s-maxage={$seconds}");
+            $response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + $seconds));
         }
 
         return $response;
