@@ -35,12 +35,14 @@ return [
 
     'mailers' => [
         'smtp' => [
-            'transport' => 'custom_smtp',  // <-- cambia questo
-            'host' => env('MAIL_HOST'),
-            'port' => env('MAIL_PORT'),
-            'encryption' => env('MAIL_ENCRYPTION'),
+            'transport' => 'smtp',
+            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME'),
             'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
+            'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
 
         'ses' => [
