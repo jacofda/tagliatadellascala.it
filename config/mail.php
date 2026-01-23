@@ -44,17 +44,6 @@ return [
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
 
-            /*
-            * Aggiungi questo blocco 'context' qui sotto.
-            * Symfony Mailer lo usa per le opzioni dello stream SSL.
-            */
-            'context' => [
-                'ssl' => [
-                    'allow_self_signed' => true,
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                ],
-            ],
             'stream' => [
                 'ssl' => [
                     'allow_self_signed' => true,
