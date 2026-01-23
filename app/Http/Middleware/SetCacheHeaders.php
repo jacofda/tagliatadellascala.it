@@ -18,10 +18,15 @@ class SetCacheHeaders
     {
         $response = $next($request);
 
+            \Log::info('SetCacheHeaders MIDDLEWARE EXECUTED');
+
         // Only cache successful GET requests
         if ($request->isMethod('GET') && $response->isSuccessful()) {
             $seconds = $ttl * 60;
             
+
+                \Log::info('SetCacheHeaders MIDDLEWARE EXECUTED 2');
+
             // FORZA rimozione header sessione
             $response->headers->remove('Cache-Control');
             $response->headers->remove('Pragma');
@@ -32,6 +37,8 @@ class SetCacheHeaders
             $response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + $seconds));
 
             $response->headers->set('Ciao', 'Gino');
+                    \Log::info('Headers set', ['ciao' => $response->headers->get('Ciao')]);
+
 
         }
 
