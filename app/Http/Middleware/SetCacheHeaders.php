@@ -23,9 +23,12 @@ class SetCacheHeaders
             // Convert minutes to seconds
             $seconds = $ttl * 60;
             
+            // Remove any existing cache headers first
+            $response->headers->remove('Cache-Control');
+            $response->headers->remove('Pragma');
+            
             // Set public cache headers
-            $response->header('Cache-Control', "public, max-age={$seconds}");
-            $response->header('X-Accel-Expires', $seconds); // For nginx
+            $response->headers->set('Cache-Control', "public, max-age={$seconds}");
         }
 
         return $response;
