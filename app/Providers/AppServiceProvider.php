@@ -31,9 +31,7 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-       Mail::extend('custom_smtp', function ($config) {
-            $stream = new SocketStream();
-            
+        Mail::extend('custom_smtp', function ($config) {
             $streamOptions = [
                 'ssl' => [
                     'verify_peer' => false,
@@ -42,15 +40,13 @@ class AppServiceProvider extends ServiceProvider
                 ],
             ];
             
-            $stream->setStreamOptions($streamOptions);
-            
             $transport = new EsmtpTransport(
                 $config['host'],
                 $config['port'],
-                $config['encryption'] ?? null,
-                null,
-                $stream
+                $config['encryption'] ?? false
             );
+            
+            $transport->setStreamOptions($streamOptions);
             
             if (isset($config['username'])) {
                 $transport->setUsername($config['username']);
