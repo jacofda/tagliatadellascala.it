@@ -13,7 +13,7 @@
 
 
 
-Route::get('/', 'PagesController@welcome')->name('welcome');
+Route::get('/', 'PagesController@welcome')->name('welcome')->middleware('cache.headers');
 Auth::routes();
 
 Route::get('profilo/', 'ProfileController@index');
@@ -30,7 +30,7 @@ Route::patch('user/{id}', 'ProfileController@updateLogin');
 
 Route::get('/home', 'AdminController@dashboard');
 
-Route::get('eventi', 'EventController@index');
+Route::get('eventi', 'EventController@index')->middleware('cache.headers');
 Route::get('eventi/create', 'EventController@create');
 Route::post('eventi', 'EventController@store');
 
@@ -66,40 +66,40 @@ Route::get('scala-dei-sapori/stands/{tag}', 'ArticleController@scalaTag');
 Route::get('articoli/associazione', 'ArticleController@associazione');
 Route::get('articoli/{sector}/{slug}', 'ArticleController@show');
 
-Route::get('gallerie', 'GalleryController@index');
+Route::get('gallerie', 'GalleryController@index')->middleware('cache.headers');
 Route::get('gallerie/create', 'GalleryController@create');
 Route::post('gallerie', 'GalleryController@store');
 Route::get('gallerie/{id}/edit', 'GalleryController@edit');
 Route::patch('gallerie/{id}', 'GalleryController@update');
 Route::delete('gallerie/{id}', 'GalleryController@destroy');
-Route::get('gallerie/scala-dei-sapori', 'GalleryController@scala');
-Route::get('gallerie/associazione', 'GalleryController@associazione');
-Route::get('gallerie/{sector}/{slug}', 'GalleryController@show');
+Route::get('gallerie/scala-dei-sapori', 'GalleryController@scala')->middleware('cache.headers');
+Route::get('gallerie/associazione', 'GalleryController@associazione')->middleware('cache.headers');
+Route::get('gallerie/{sector}/{slug}', 'GalleryController@show')->middleware('cache.headers');
 
-Route::get('video', 'VideoController@index');
+Route::get('video', 'VideoController@index')->middleware('cache.headers');
 Route::get('video/create', 'VideoController@create');
 Route::post('video', 'VideoController@store');
 Route::get('video/{id}/edit', 'VideoController@edit');
 Route::patch('video/{id}', 'VideoController@update');
 Route::delete('video/{id}', 'VideoController@destroy');
-Route::get('video/{sector}/{slug}', 'VideoController@show');
+Route::get('video/{sector}/{slug}', 'VideoController@show')->middleware('cache.headers');
 
 
-Route::get('contatti', 'PagesController@contattiGet');
+Route::get('contatti', 'PagesController@contattiGet')->middleware('cache.headers');
 Route::post('contatti', 'PagesController@contattiPost');
-Route::get('associazione/chi-siamo', 'PagesController@associazione');
-Route::get('scala-dei-sapori/la-storia', 'PagesController@storia');
-Route::get('scala-dei-sapori/diventa-espositore', 'PagesController@espositore');
-Route::get('scala-dei-sapori/edizione-2017', 'PagesController@sds2017');
-Route::get('scala-dei-sapori/edizione-2018', 'PagesController@sds2018');
-Route::get('scala-dei-sapori/edizione-2019', 'PagesController@sds2019');
+Route::get('associazione/chi-siamo', 'PagesController@associazione')->middleware('cache.headers');
+Route::get('scala-dei-sapori/la-storia', 'PagesController@storia')->middleware('cache.headers');
+Route::get('scala-dei-sapori/diventa-espositore', 'PagesController@espositore')->middleware('cache.headers');
+Route::get('scala-dei-sapori/edizione-2017', 'PagesController@sds2017')->middleware('cache.headers');
+Route::get('scala-dei-sapori/edizione-2018', 'PagesController@sds2018')->middleware('cache.headers');
+Route::get('scala-dei-sapori/edizione-2019', 'PagesController@sds2019')->middleware('cache.headers');
 
-Route::get('associazione', 'PagesController@associazioneContent');
-Route::get('scala-dei-sapori', 'PagesController@scalaContent');
+Route::get('associazione', 'PagesController@associazioneContent')->middleware('cache.headers');
+Route::get('scala-dei-sapori', 'PagesController@scalaContent')->middleware('cache.headers');
 // Route::get('associazione/{tag}', 'PagesController@associazioneContentTag');
 // Route::get('scala-dei-sapori/{tag}', 'PagesController@scalaContentTag');
-Route::get('privacy', 'PagesController@privacy');
-Route::get('faq-biglietti-online', 'PagesController@faq');
+Route::get('privacy', 'PagesController@privacy')->middleware('cache.headers');
+Route::get('faq-biglietti-online', 'PagesController@faq')->middleware('cache.headers');
 
 
 Route::group(['prefix' => 'admin'], function () {
